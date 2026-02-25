@@ -8,10 +8,47 @@ A minimal service to send appreciation (kodous) to your team. Simple, kind, and 
 - **View Sent** — See all kodous you've sent
 - **My Kodous** — Enter your name to see kodous sent to you
 
-## Getting Started
+## Deploy on Vercel
+
+### 1. Add Neon (Postgres)
+
+1. Go to [Vercel Marketplace](https://vercel.com/marketplace) and add **Neon**
+2. Connect Neon to your project — `DATABASE_URL` is auto-injected
+
+### 2. Deploy
 
 ```bash
-npm run dev
+# Install Vercel CLI (optional)
+bun add -g vercel
+
+# Deploy
+vercel
+```
+
+Or push to GitHub and import the repo in [Vercel](https://vercel.com/new).
+
+## Local Development
+
+### 1. Create a Neon database
+
+- Sign up at [neon.tech](https://neon.tech)
+- Create a project and copy the connection string
+
+### 2. Set environment variables
+
+```bash
+cp .env.example .env.local
+# Edit .env.local and add:
+# - DATABASE_URL (from Neon)
+# - AUTH_USERNAME, AUTH_PASSWORD (login credentials)
+# - SESSION_SECRET (min 32 chars, e.g. openssl rand -base64 32)
+```
+
+### 3. Run
+
+```bash
+bun install
+bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
@@ -28,4 +65,4 @@ Open [http://localhost:3000](http://localhost:3000).
 - Next.js 16 (App Router)
 - TypeScript
 - Tailwind CSS
-- In-memory storage (replace with a database for production)
+- Neon Postgres (serverless, Vercel-ready)
