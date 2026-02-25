@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
 import { Suspense } from "react";
 import { PageProgressBar } from "@/components/PageProgressBar";
+import { PWARegister } from "@/components/PWARegister";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -17,13 +18,24 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
+  applicationName: "Kodous",
   title: "Kodous — Send appreciation to your team",
   description: "Simple, kind, and personal. Send kodous to your team.",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Kodous",
+  },
   icons: {
     icon: "/icon.svg",
     shortcut: "/icon.svg",
-    apple: "/icon.svg",
+    apple: "/apple-touch-icon.png",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#111827",
 };
 
 export default function RootLayout({
@@ -34,6 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${plusJakarta.variable} ${fraunces.variable} antialiased`}>
+        <PWARegister />
         <Suspense fallback={null}>
           <PageProgressBar />
         </Suspense>
