@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
+import { Suspense } from "react";
 import { PageProgressBar } from "@/components/PageProgressBar";
 import "./globals.css";
 
@@ -33,7 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${plusJakarta.variable} ${fraunces.variable} antialiased`}>
-        <PageProgressBar />
+        <Suspense fallback={null}>
+          <PageProgressBar />
+        </Suspense>
         {children}
       </body>
     </html>
