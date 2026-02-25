@@ -2,6 +2,8 @@
   "name": "Kodous",
   "short_name": "Kodous",
   "description": "Simple, kind, and personal. Send kodous to your team.",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
