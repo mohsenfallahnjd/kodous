@@ -21,15 +21,15 @@ export const metadata: Metadata = {
   applicationName: "Kodous",
   title: "Kodous — Send appreciation to your team",
   description: "Simple, kind, and personal. Send kodous to your team.",
-  manifest: "/manifest.webmanifest",
+  manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
     title: "Kodous",
   },
   icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
 };
