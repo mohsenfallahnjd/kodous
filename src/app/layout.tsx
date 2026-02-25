@@ -18,6 +18,11 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: "Kodous — Send appreciation to your team",
   description: "Simple, kind, and personal. Send kodous to your team.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -27,9 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${plusJakarta.variable} ${fraunces.variable} antialiased`}
-      >
+      <body className={`${plusJakarta.variable} ${fraunces.variable} antialiased`}>
         <PageProgressBar />
         {children}
       </body>
