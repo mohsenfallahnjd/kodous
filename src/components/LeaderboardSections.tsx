@@ -15,25 +15,23 @@ function PodiumCard({
   entry,
   avatar,
   featured,
+  imgSize,
 }: {
   entry: LeaderboardEntry;
   avatar: string;
   featured?: boolean;
+  imgSize?: number;
 }) {
   return (
     <article
       className={`rounded-2xl border bg-[var(--card)] px-3 py-4 text-center ${
-        featured
-          ? "border-[var(--accent)]/40 shadow-[var(--shadow-soft)]"
-          : "border-[var(--border)]"
+        featured ? "border-[var(--accent)]/40 shadow-[var(--shadow-soft)]" : "border-[var(--border)]"
       }`}
     >
       <div className="mb-2 flex justify-center">
-        <Avatar id={avatar} size={featured ? 66 : 54} />
+        <Avatar id={avatar} size={featured ? 66 : 54} imgSize={imgSize} />
       </div>
-      <p className="text-[11px] uppercase tracking-wide text-[var(--muted)]">
-        #{entry.rank}
-      </p>
+      <p className="text-[11px] uppercase tracking-wide text-[var(--muted)]">#{entry.rank}</p>
       <p className="truncate text-[15px] font-semibold">{entry.name}</p>
       <p className="text-xs text-[var(--muted)]">
         {entry.count} {entry.count === 1 ? "kodu" : "kodous"}
@@ -55,11 +53,7 @@ export function LeaderboardSections({
 
   return (
     <section>
-      {title ? (
-        <h2 className="kd-title mb-4 text-xl">
-          {title}
-        </h2>
-      ) : null}
+      {title ? <h2 className="kd-title mb-4 text-xl">{title}</h2> : null}
 
       {entries.length === 0 ? (
         <p className="rounded-xl border border-dashed border-[var(--border)] px-4 py-8 text-center text-sm text-[var(--muted)]">
@@ -70,10 +64,7 @@ export function LeaderboardSections({
           {showPodium ? (
             <div className="mb-7 grid grid-cols-3 gap-2.5">
               {topThree[1] ? (
-                <PodiumCard
-                  entry={topThree[1]}
-                  avatar={userMap[topThree[1].name]?.avatar || "boy1"}
-                />
+                <PodiumCard entry={topThree[1]} avatar={userMap[topThree[1].name]?.avatar || "boy1"} />
               ) : (
                 <div />
               )}
@@ -82,15 +73,13 @@ export function LeaderboardSections({
                   entry={topThree[0]}
                   avatar={userMap[topThree[0].name]?.avatar || "boy1"}
                   featured
+                  imgSize={56}
                 />
               ) : (
                 <div />
               )}
               {topThree[2] ? (
-                <PodiumCard
-                  entry={topThree[2]}
-                  avatar={userMap[topThree[2].name]?.avatar || "boy1"}
-                />
+                <PodiumCard entry={topThree[2]} avatar={userMap[topThree[2].name]?.avatar || "boy1"} />
               ) : (
                 <div />
               )}

@@ -123,14 +123,14 @@ export default function UsersPage() {
                 {AVATARS.map((a) => (
                   <button
                     key={a}
-                    style={{ width: "56px", height: "56px" }}
+                    style={{ width: "70px", height: "70px" }}
                     type="button"
                     onClick={() => setAvatar(a)}
                     className={`rounded-full transition-all ${
                       avatar === a ? "ring-2 ring-[var(--accent)]" : "opacity-60 hover:opacity-100"
                     }`}
                   >
-                    <Avatar id={a} size={56} />
+                    <Avatar id={a} size={70} imgSize={60} />
                   </button>
                 ))}
               </div>

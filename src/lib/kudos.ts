@@ -48,7 +48,9 @@ export async function getKodu(id: string): Promise<Kodu | null> {
     SELECT id, "from", "to", message, anonymous, created_at
     FROM kodous WHERE id = ${id}
   `;
-  if (!row) return null;
+  if (!row) {
+    return null;
+  }
   return {
     id: row.id,
     from: row.anonymous ? "Someone" : row.from,
@@ -94,6 +96,27 @@ export async function getAllKodus(): Promise<Kodu[]> {
     anonymous: row.anonymous ?? true,
     createdAt: new Date(row.created_at).toISOString(),
   }));
+}
+
+export async function deleteKodu(id: string): Promise<boolean> {
+  await ensureInit();
+  const sql = getDb();
+  const rows = await sql`
+    DELETE FROM kodous
+    WHERE id = ${id}
+    RETURNING id
+  `;
+  return rows.length > 0;
+}
+
+export async function resetKodus(): Promise<number> {
+  await ensureInit();
+  const sql = getDb();
+  const rows = await sql`
+    DELETE FROM kodous
+    RETURNING id
+  `;
+  return rows.length;
 }
 
 export type LeaderboardEntry = {

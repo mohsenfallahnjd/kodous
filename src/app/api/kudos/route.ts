@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
-import { createKodu, getKoduByTo, getAllKodus } from "@/lib/kudos";
-import { requireAuth } from "@/lib/auth";
+import { type NextRequest, NextResponse } from "next/server";
+import { createKodu, getKoduByTo, getAllKodus, resetKodus } from "@/lib/kudos";
+import { requireAdmin, requireAuth } from "@/lib/auth";
 
 export async function GET(request: NextRequest) {
   try {
@@ -51,6 +51,24 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    const msg = err instanceof Error ? err.message : "Server error";
+    return NextResponse.json({ error: msg }, { status: 500 });
+  }
+}
+
+export async function DELETE() {
+  try {
+    await requireAdmin();
+  } catch (err) {
+    if (err instanceof Error && err.message === "Forbidden") {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  try {
+    const deleted = await resetKodus();
+    return NextResponse.json({ deleted });
+  } catch (err) {
     const msg = err instanceof Error ? err.message : "Server error";
     return NextResponse.json({ error: msg }, { status: 500 });
   }
