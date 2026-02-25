@@ -12,6 +12,16 @@ It lets members send anonymous kudos, view weekly rankings, and manage team prof
 - Sent history with admin-only delete/reset actions
 - PWA support (`manifest.json` + service worker registration)
 
+## Screenshots
+
+### Home
+
+![Kodous home screen](public/readme/home.png)
+
+### Send
+
+![Kodous send screen](public/readme/send.png)
+
 ## Tech Stack
 
 - Next.js 16 (App Router)
